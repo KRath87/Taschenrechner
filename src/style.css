@@ -9,6 +9,10 @@ body {
 h1 {
 	text-align: center;
 }
+
+#calculator:hover {
+	cursor: pointer;
+}
 #calculator {
 	width: 410px;
 	height: 600px;
@@ -48,7 +52,7 @@ h1 {
 
 	text-align: center;
 }
-#operators {
+#calculate {
 	background-color: rgb(139, 139, 201);
 	height: calc(100% * 5 / 6);
 	width: 100%;
@@ -56,7 +60,7 @@ h1 {
 	flex-wrap: wrap;
 }
 
-#operators div {
+#calculate div {
 	height: 20%;
 	width: 25%;
 	margin: 0;
