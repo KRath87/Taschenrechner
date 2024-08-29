@@ -8,8 +8,8 @@ let divi = 0;
 let number = 0;
 let index = 0;
 
-let arrInput: string[] = [];
-let arrRechung: number[] = [];
+let arrInput: (string | number)[] = [];
+
 let arrayIndex = 0;
 
 const inOut = document.querySelectorAll("#inOut div");
@@ -53,6 +53,8 @@ function calculate(action: string) {
 		window.location.reload();
 	}
 	if (arrInput[arrayIndex] == !0) {
+		(<HTMLDivElement>document.getElementById("input")).innerHTML =
+			newNumber.toString();
 		arrayIndex++;
 	}
 	if (action === "addition") {
@@ -94,7 +96,7 @@ function calculate(action: string) {
 		for (let c = 0; c < arrInput.length; c++) {
 			if (arrInput.includes("*")) {
 				multi = arrInput.indexOf("*");
-				number = arrInput[multi - 1] * arrInput[multi + 1];
+				number = parseInt(arrInput[multi - 1]) * parseInt(arrInput[multi + 1]);
 				index = multi - 1;
 				arrInput.splice(index, 3, number);
 			}
@@ -132,7 +134,7 @@ function calculate(action: string) {
 
 		arrInput.length = 0;
 		console.log(arrInput);
-		arrInput[0] = newNumber;
+		arrInput[0] = newNumber.toString();
 		console.log(arrInput[0]);
 	}
 
