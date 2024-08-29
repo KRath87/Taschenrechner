@@ -88,28 +88,29 @@ function calculate(action: string) {
 
 		text = "";
 
-		text = "";
 		(<HTMLDivElement>document.getElementById("input")).innerHTML = "*";
 	}
 
 	if (action === "result") {
-		arrayIndex++;
-		console.log(arrInput);
-		for (let c = 0; c < arrInput.length; c++) {
-			if (arrInput.includes("*")) {
-				multi = arrInput.indexOf("*");
-				number = parseInt(arrInput[multi - 1]) * parseInt(arrInput[multi + 1]);
+		indexZahlen++;
+
+		console.log(arrRechnung);
+		console.log(arrZahlen);
+		for (let c = 0; c < arrZahlen.length; c++) {
+			if (arrRechnung.includes("*")) {
+				multi = arrRechnung.indexOf("*");
+				number = arrZahlen[multi - 1] * arrZahlen[multi + 1];
 				index = multi - 1;
-				arrInput.splice(index, 3, number);
+				arrZahlen.splice(index, 3, number);
 			}
-			if (arrInput.includes("/")) {
-				divi = arrInput.indexOf("/");
-				number = arrInput[divi - 1] / arrInput[divi + 1];
+			if (arrRechnung.includes("/")) {
+				divi = arrRechnung.indexOf("/");
+				number = arrZahlen[divi - 1] / arrZahlen[divi + 1];
 				index = divi - 1;
-				arrInput.splice(index, 3, number);
+				arrZahlen.splice(index, 3, number);
 			}
 		}
-		for (let b = 0; b < arrInput.length; b++) {
+		for (let b = 0; b < arrZahlen.length; b++) {
 			if (typeof arrInput[b] === "number") {
 				newNumber = parseInt(arrInput[b]);
 			} else if (arrInput[b] === "+") {
