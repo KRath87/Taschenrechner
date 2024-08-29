@@ -99,11 +99,11 @@ function calculate(action: string) {
 		for (let c = 0; c < arrZahlen.length; c++) {
 			if (arrRechnung.includes("*")) {
 				multi = arrRechnung.indexOf("*");
-				console.log(multi);
+				console.log("multi=" + multi);
 				number = arrZahlen[multi] * arrZahlen[multi + 1];
-				console.log(number);
+				console.log("number=" + number);
 				arrZahlen.splice(multi, 2, number);
-				console.log(arrZahlen);
+				console.log("arrzahlen=" + arrZahlen);
 			}
 			if (arrRechnung.includes("/")) {
 				divi = arrRechnung.indexOf("/");
@@ -115,16 +115,19 @@ function calculate(action: string) {
 		for (let b = 0; b < arrZahlen.length; b++) {
 			if (arrRechnung[b] === "+") {
 				newNumber = arrZahlen[b] + arrZahlen[b + 1];
-				arrZahlen[b] = newNumber;
+				arrZahlen[b + 1] = newNumber;
+
+				console.log("newNumber=" + newNumber);
+				console.log("arrZahlen=" + arrZahlen);
 			}
 			if (arrRechnung[b] === "-") {
 				newNumber = arrZahlen[b] - arrZahlen[b + 1];
 				arrZahlen[b + 1] = newNumber;
 			}
-			if (arrRechnung[b] === "*") {
-				newNumber = arrZahlen[b] * arrZahlen[b + 1];
-				arrZahlen[b + 1] = newNumber;
-			}
+			// if (arrRechnung[b] === "*") {
+			// 	newNumber = arrZahlen[b] * arrZahlen[b + 1];
+			// 	arrZahlen[b + 1] = newNumber;
+			// }
 			if (arrRechnung[b] === "/") {
 				newNumber = arrZahlen[b] / arrZahlen[b + 1];
 				arrZahlen[b + 1] = newNumber;
@@ -134,5 +137,6 @@ function calculate(action: string) {
 		text = "";
 	}
 
-	(<HTMLDivElement>document.getElementById("output")).innerHTML = newNumber;
+	(<HTMLDivElement>document.getElementById("output")).innerHTML =
+		newNumber.toString();
 }
