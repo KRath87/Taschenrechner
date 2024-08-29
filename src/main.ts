@@ -10,7 +10,7 @@ let index = 0;
 
 let arrInput: string[] = [];
 let arrRechung: number[] = [];
-let a = 0;
+let arrayIndex = 0;
 
 const inOut = document.querySelectorAll("#inOut div");
 const opperators = document.querySelectorAll("#calculate .operators");
@@ -39,8 +39,10 @@ for (let i = 0; i < 10; i++) {
 
 function write(received: number) {
 	text = text + received.toString();
-	arrInput[a] = text;
+
+	arrInput[arrayIndex] = text;
 	// console.log(arrInput);
+
 	(<HTMLDivElement>document.getElementById("input")).innerHTML = text;
 }
 
@@ -48,88 +50,88 @@ function calculate(action: string) {
 	if (action === "delete") {
 		window.location.reload();
 	}
-	if (arr[a] == !0) {
-		a++;
+	if (arrInput[arrayIndex] == !0) {
+		arrayIndex++;
 	}
 	if (action === "addition") {
-		a++;
-		arr[a] = "+";
-		a++;
+		arrayIndex++;
+		arrInput[arrayIndex] = "+";
+		arrayIndex++;
 
 		text = "";
 		(<HTMLDivElement>document.getElementById("input")).innerHTML = text + "+";
 	}
 	if (action === "subtraction") {
-		a++;
-		arr[a] = "-";
-		a++;
+		arrayIndex++;
+		arrInput[arrayIndex] = "-";
+		arrayIndex++;
 
 		text = "";
 		(<HTMLDivElement>document.getElementById("input")).innerHTML = "-";
 	}
 	if (action === "division") {
-		a++;
-		arr[a] = "/";
-		a++;
+		arrayIndex++;
+		arrInput[arrayIndex] = "/";
+		arrayIndex++;
 
 		text = "";
 		(<HTMLDivElement>document.getElementById("input")).innerHTML = "/";
 	}
 	if (action === "multiplication") {
-		a++;
-		arr[a] = "*";
-		a++;
+		arrayIndex++;
+		arrInput[arrayIndex] = "*";
+		arrayIndex++;
 
 		text = "";
 		(<HTMLDivElement>document.getElementById("input")).innerHTML = "*";
 	}
 
 	if (action === "result") {
-		a++;
-		console.log(arr);
-		for (let c = 0; c < arr.length; c++) {
-			if (arr.includes("*")) {
-				multi = arr.indexOf("*");
-				number = arr[multi - 1] * arr[multi + 1];
+		arrayIndex++;
+		console.log(arrInput);
+		for (let c = 0; c < arrInput.length; c++) {
+			if (arrInput.includes("*")) {
+				multi = arrInput.indexOf("*");
+				number = arrInput[multi - 1] * arrInput[multi + 1];
 				index = multi - 1;
-				arr.splice(index, 3, number);
+				arrInput.splice(index, 3, number);
 			}
-			if (arr.includes("/")) {
-				divi = arr.indexOf("/");
-				number = arr[divi - 1] / arr[divi + 1];
+			if (arrInput.includes("/")) {
+				divi = arrInput.indexOf("/");
+				number = arrInput[divi - 1] / arrInput[divi + 1];
 				index = divi - 1;
-				arr.splice(index, 3, number);
+				arrInput.splice(index, 3, number);
 			}
 		}
-		for (let b = 0; b < arr.length; b++) {
-			if (typeof arr[b] === "number") {
-				newNumber = arr[b];
-			} else if (arr[b] === "+") {
-				newNumber = arr[b - 1] + arr[b + 1];
+		for (let b = 0; b < arrInput.length; b++) {
+			if (typeof arrInput[b] === "number") {
+				newNumber = arrInput[b];
+			} else if (arrInput[b] === "+") {
+				newNumber = arrInput[b - 1] + arrInput[b + 1];
 				b++;
-				arr[b] = newNumber;
-			} else if (arr[b] === "*") {
-				newNumber = arr[b - 1] * arr[b + 1];
+				arrInput[b] = newNumber;
+			} else if (arrInput[b] === "*") {
+				newNumber = arrInput[b - 1] * arrInput[b + 1];
 				b++;
-				arr[b] = newNumber;
-			} else if (arr[b] === "-") {
-				newNumber = arr[b - 1] - arr[b + 1];
+				arrInput[b] = newNumber;
+			} else if (arrInput[b] === "-") {
+				newNumber = arrInput[b - 1] - arrInput[b + 1];
 				b++;
-				arr[b] = newNumber;
-			} else if (arr[b] === "/") {
-				newNumber = arr[b - 1] / arr[b + 1];
+				arrInput[b] = newNumber;
+			} else if (arrInput[b] === "/") {
+				newNumber = arrInput[b - 1] / arrInput[b + 1];
 				b++;
-				arr[b] = newNumber;
+				arrInput[b] = newNumber;
 			}
 		}
 
 		console.log(newNumber);
 		text = "";
 
-		arr.length = 0;
-		console.log(arr);
-		arr[0] = newNumber;
-		console.log(arr[0]);
+		arrInput.length = 0;
+		console.log(arrInput);
+		arrInput[0] = newNumber;
+		console.log(arrInput[0]);
 	}
 
 	(<HTMLDivElement>document.getElementById("output")).innerHTML =
