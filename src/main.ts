@@ -111,17 +111,17 @@ function calculate(action: string) {
 				b++;
 				arrInput[b] = newNumber.toString();
 			} else if (arrInput[b] === "*") {
-				newNumber = arrInput[b - 1] * arrInput[b + 1];
+				newNumber = parseInt(arrInput[b - 1]) * parseInt(arrInput[b + 1]);
 				b++;
-				arrInput[b] = newNumber;
+				arrInput[b] = newNumber.toString();
 			} else if (arrInput[b] === "-") {
-				newNumber = arrInput[b - 1] - arrInput[b + 1];
+				newNumber = parseInt(arrInput[b - 1]) - parseInt(arrInput[b + 1]);
 				b++;
-				arrInput[b] = newNumber;
+				arrInput[b] = newNumber.toString();
 			} else if (arrInput[b] === "/") {
-				newNumber = arrInput[b - 1] / arrInput[b + 1];
+				newNumber = parseInt(arrInput[b - 1]) / parseInt(arrInput[b + 1]);
 				b++;
-				arrInput[b] = newNumber;
+				arrInput[b] = newNumber.toString();
 			}
 		}
 
