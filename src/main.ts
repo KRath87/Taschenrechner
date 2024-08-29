@@ -1,24 +1,25 @@
 import "./style.css";
 //Taschenrechner mit + - * /
-let calculation = 0;
-let number = 0;
+
 let text = "";
 let newNumber = 0;
-let result = 0;
-let output = "";
+let multi = 0;
+let divi = 0;
+let number = 0;
+let index = 0;
+
+let arr = [];
+let a = 0;
 
 const inOut = document.querySelectorAll("#inOut div");
 const opperators = document.querySelectorAll("#calculate .operators");
 const values = document.querySelectorAll("#calculate .values");
 
 console.log(inOut);
-console.log(inOut[0].id);
-console.log(inOut[0].tagName);
+
 console.log(opperators);
-console.log(opperators[0].id);
+
 console.log(values);
-console.log(values[0].id);
-console.log(values[0].tagName);
 
 for (let i = 0; i < 10; i++) {
 	const numValue = values[i].id;
@@ -36,77 +37,100 @@ for (let i = 0; i < 10; i++) {
 }
 
 function write(received: number) {
-	text = text + received.toString();
-	output = text;
-	(<HTMLDivElement>document.getElementById("input")).innerHTML = output;
+	if (arr[a] == !0) {
+		a++;
+	} else {
+		text = text + received.toString();
+		arr[a] = text;
 
-	// console.log(text);
+		(<HTMLDivElement>document.getElementById("input")).innerHTML = text;
+	}
 }
 function calculate(action: string) {
 	if (action === "delete") {
 		window.location.reload();
 	}
 	if (action === "addition") {
-		newNumber = parseInt(text);
+		a++;
+		arr[a] = "+";
+		a++;
 
-		calculation = number + newNumber;
-		number = calculation;
-		console.log(number);
 		text = "";
-		(<HTMLDivElement>document.getElementById("input")).innerHTML = "+";
+		(<HTMLDivElement>document.getElementById("input")).innerHTML = text + "+";
 	}
 	if (action === "subtraction") {
-		if (number === 0) {
-			number = parseInt(text);
-		} else {
-			newNumber = parseInt(text);
+		a++;
+		arr[a] = "-";
+		a++;
 
-			calculation = number - newNumber;
-			number = calculation;
-			console.log(calculation);
-			text = "";
-			(<HTMLDivElement>document.getElementById("input")).innerHTML = "-";
-		}
+		text = "";
+		(<HTMLDivElement>document.getElementById("input")).innerHTML = "-";
 	}
 	if (action === "division") {
-		newNumber = parseInt(text);
+		a++;
+		arr[a] = "/";
+		a++;
 
-		calculation = newNumber - number;
-		number = calculation;
-		console.log(calculation);
 		text = "";
-		(<HTMLDivElement>document.getElementById("input")).innerHTML = "-";
+		(<HTMLDivElement>document.getElementById("input")).innerHTML = "/";
 	}
 	if (action === "multiplication") {
-		newNumber = parseInt(text);
+		a++;
+		arr[a] = "*";
+		a++;
 
-		calculation = newNumber - number;
-		number = calculation;
-		console.log(calculation);
 		text = "";
-		(<HTMLDivElement>document.getElementById("input")).innerHTML = "-";
+		(<HTMLDivElement>document.getElementById("input")).innerHTML = "*";
 	}
-	if (action === "point") {
-		newNumber = parseInt(text);
 
-		calculation = newNumber - number;
-		number = calculation;
-		console.log(calculation);
-		text = "";
-		(<HTMLDivElement>document.getElementById("input")).innerHTML = "-";
-	}
-	if (action === "negative") {
-		newNumber = parseInt(text);
-
-		calculation = newNumber - number;
-		number = calculation;
-		console.log(calculation);
-		text = "";
-		(<HTMLDivElement>document.getElementById("input")).innerHTML = "-";
-	}
 	if (action === "result") {
-		number = calculation;
-		console.log(number);
+		a++;
+		console.log(arr);
+		for (let c = 0; c < arr.length; c++) {
+			if (arr.includes("*")) {
+				multi = arr.indexOf("*");
+				number = arr[multi - 1] * arr[multi + 1];
+				index = multi - 1;
+				arr.splice(index, 3, number);
+			}
+			if (arr.includes("/")) {
+				divi = arr.indexOf("/");
+				number = arr[divi - 1] / arr[divi + 1];
+				index = divi - 1;
+				arr.splice(index, 3, number);
+			}
+		}
+		for (let b = 0; b < arr.length; b++) {
+			if (typeof arr[b] === "number") {
+				newNumber = parseInt(arr[b]);
+			} else if (arr[b] === "+") {
+				newNumber = parseInt(arr[b - 1]) + parseInt(arr[b + 1]);
+				b++;
+				arr[b] = newNumber;
+			} else if (arr[b] === "*") {
+				newNumber = parseInt(arr[b - 1]) * parseInt(arr[b + 1]);
+				b++;
+				arr[b] = newNumber;
+			} else if (arr[b] === "-") {
+				newNumber = parseInt(arr[b - 1]) - parseInt(arr[b + 1]);
+				b++;
+				arr[b] = newNumber;
+			} else if (arr[b] === "/") {
+				newNumber = parseInt(arr[b - 1]) / parseInt(arr[b + 1]);
+				b++;
+				arr[b] = newNumber;
+			}
+		}
+
+		console.log(newNumber);
 		text = "";
+
+		arr.length = 0;
+		console.log(arr);
+		arr[0] = newNumber;
+		console.log(arr[0]);
 	}
+
+	(<HTMLDivElement>document.getElementById("output")).innerHTML =
+		newNumber.toString();
 }
