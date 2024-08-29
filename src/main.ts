@@ -8,9 +8,11 @@ let divi = 0;
 let number = 0;
 let index = 0;
 
-let arrInput: (string | number)[] = [];
+let arrZahlen: number[] = [];
+let arrRechnung: string[] = [];
 
-let arrayIndex = 0;
+let indexZahlen = 0;
+let indexRechnung = 0;
 
 const inOut = document.querySelectorAll("#inOut div");
 const opperators = document.querySelectorAll("#calculate .operators");
@@ -40,7 +42,7 @@ for (let i = 0; i < 10; i++) {
 function write(received: number) {
 	text = text + received.toString();
 
-	arrInput[arrayIndex] = text;
+	arrZahlen[indexZahlen] = parseFloat(text);
 	// console.log(arrInput);
 
 	(<HTMLDivElement>document.getElementById("input")).innerHTML = text;
@@ -48,19 +50,20 @@ function write(received: number) {
 
 function calculate(action: string) {
 	(<HTMLDivElement>document.getElementById("input")).innerHTML =
-		arrInput.join("") + "=";
+		arrZahlen.join("") + "=";
 	if (action === "delete") {
 		window.location.reload();
 	}
-	if (arrInput[arrayIndex] == !0) {
+
+	if (arrZahlen[0] == !0) {
 		(<HTMLDivElement>document.getElementById("input")).innerHTML =
 			newNumber.toString();
-		arrayIndex++;
+
+		indexZahlen++;
 	}
 	if (action === "addition") {
-		arrayIndex++;
-		arrInput[arrayIndex] = "+";
-		arrayIndex++;
+		arrRechnung[indexRechnung] = "+";
+		indexRechnung++;
 
 		text = "";
 		(<HTMLDivElement>document.getElementById("input")).innerHTML = text + "+";
