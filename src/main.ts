@@ -8,7 +8,8 @@ let divi = 0;
 let number = 0;
 let index = 0;
 
-let arr = [];
+let arrInput: string[] = [];
+let arrRechung: number[] = [];
 let a = 0;
 
 const inOut = document.querySelectorAll("#inOut div");
@@ -38,8 +39,8 @@ for (let i = 0; i < 10; i++) {
 
 function write(received: number) {
 	text = text + received.toString();
-	arr[a] = text;
-
+	arrInput[a] = text;
+	// console.log(arrInput);
 	(<HTMLDivElement>document.getElementById("input")).innerHTML = text;
 }
 
