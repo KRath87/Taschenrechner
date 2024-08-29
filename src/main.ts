@@ -105,11 +105,11 @@ function calculate(action: string) {
 		}
 		for (let b = 0; b < arrInput.length; b++) {
 			if (typeof arrInput[b] === "number") {
-				newNumber = arrInput[b];
+				newNumber = parseInt(arrInput[b]);
 			} else if (arrInput[b] === "+") {
-				newNumber = arrInput[b - 1] + arrInput[b + 1];
+				newNumber = parseInt(arrInput[b - 1]) + parseInt(arrInput[b + 1]);
 				b++;
-				arrInput[b] = newNumber;
+				arrInput[b] = newNumber.toString();
 			} else if (arrInput[b] === "*") {
 				newNumber = arrInput[b - 1] * arrInput[b + 1];
 				b++;
