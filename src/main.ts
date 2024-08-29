@@ -55,7 +55,7 @@ function calculate(action: string) {
 		window.location.reload();
 	}
 
-	if (arrZahlen[0] == !0) {
+	if (arrZahlen[0] > 0 || arrZahlen[0] < 0) {
 		(<HTMLDivElement>document.getElementById("input")).innerHTML =
 			newNumber.toString();
 
@@ -69,25 +69,24 @@ function calculate(action: string) {
 		(<HTMLDivElement>document.getElementById("input")).innerHTML = text + "+";
 	}
 	if (action === "subtraction") {
-		arrayIndex++;
-		arrInput[arrayIndex] = "-";
-		arrayIndex++;
+		arrRechnung[indexRechnung] = "-";
+		indexRechnung++;
 
 		text = "";
 		(<HTMLDivElement>document.getElementById("input")).innerHTML = "-";
 	}
 	if (action === "division") {
-		arrayIndex++;
-		arrInput[arrayIndex] = "/";
-		arrayIndex++;
+		arrRechnung[indexRechnung] = "/";
+		indexRechnung++;
 
 		text = "";
 		(<HTMLDivElement>document.getElementById("input")).innerHTML = "/";
 	}
 	if (action === "multiplication") {
-		arrayIndex++;
-		arrInput[arrayIndex] = "*";
-		arrayIndex++;
+		arrRechnung[indexRechnung] = "*";
+		indexRechnung++;
+
+		text = "";
 
 		text = "";
 		(<HTMLDivElement>document.getElementById("input")).innerHTML = "*";
