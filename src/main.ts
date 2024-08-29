@@ -99,48 +99,40 @@ function calculate(action: string) {
 		for (let c = 0; c < arrZahlen.length; c++) {
 			if (arrRechnung.includes("*")) {
 				multi = arrRechnung.indexOf("*");
-				number = arrZahlen[multi - 1] * arrZahlen[multi + 1];
-				index = multi - 1;
-				arrZahlen.splice(index, 3, number);
+				console.log(multi);
+				number = arrZahlen[multi] * arrZahlen[multi + 1];
+				console.log(number);
+				arrZahlen.splice(multi, 2, number);
+				console.log(arrZahlen);
 			}
 			if (arrRechnung.includes("/")) {
 				divi = arrRechnung.indexOf("/");
 				number = arrZahlen[divi - 1] / arrZahlen[divi + 1];
 				index = divi - 1;
-				arrZahlen.splice(index, 3, number);
+				arrZahlen.splice(index, 2, number);
 			}
 		}
 		for (let b = 0; b < arrZahlen.length; b++) {
-			if (typeof arrInput[b] === "number") {
-				newNumber = parseInt(arrInput[b]);
-			} else if (arrInput[b] === "+") {
-				newNumber = parseInt(arrInput[b - 1]) + parseInt(arrInput[b + 1]);
-				b++;
-				arrInput[b] = newNumber.toString();
-			} else if (arrInput[b] === "*") {
-				newNumber = parseInt(arrInput[b - 1]) * parseInt(arrInput[b + 1]);
-				b++;
-				arrInput[b] = newNumber.toString();
-			} else if (arrInput[b] === "-") {
-				newNumber = parseInt(arrInput[b - 1]) - parseInt(arrInput[b + 1]);
-				b++;
-				arrInput[b] = newNumber.toString();
-			} else if (arrInput[b] === "/") {
-				newNumber = parseInt(arrInput[b - 1]) / parseInt(arrInput[b + 1]);
-				b++;
-				arrInput[b] = newNumber.toString();
+			if (arrRechnung[b] === "+") {
+				newNumber = arrZahlen[b] + arrZahlen[b + 1];
+				arrZahlen[b] = newNumber;
+			}
+			if (arrRechnung[b] === "-") {
+				newNumber = arrZahlen[b] - arrZahlen[b + 1];
+				arrZahlen[b + 1] = newNumber;
+			}
+			if (arrRechnung[b] === "*") {
+				newNumber = arrZahlen[b] * arrZahlen[b + 1];
+				arrZahlen[b + 1] = newNumber;
+			}
+			if (arrRechnung[b] === "/") {
+				newNumber = arrZahlen[b] / arrZahlen[b + 1];
+				arrZahlen[b + 1] = newNumber;
 			}
 		}
 
-		console.log(newNumber);
 		text = "";
-
-		arrInput.length = 0;
-		console.log(arrInput);
-		arrInput[0] = newNumber.toString();
-		console.log(arrInput[0]);
 	}
 
-	(<HTMLDivElement>document.getElementById("output")).innerHTML =
-		newNumber.toString();
+	(<HTMLDivElement>document.getElementById("output")).innerHTML = newNumber;
 }
