@@ -47,6 +47,8 @@ function write(received: number) {
 }
 
 function calculate(action: string) {
+	(<HTMLDivElement>document.getElementById("input")).innerHTML =
+		arrInput.join("") + "=";
 	if (action === "delete") {
 		window.location.reload();
 	}
