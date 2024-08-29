@@ -37,18 +37,18 @@ for (let i = 0; i < 10; i++) {
 }
 
 function write(received: number) {
-	if (arr[a] == !0) {
-		a++;
-	} else {
-		text = text + received.toString();
-		arr[a] = text;
+	text = text + received.toString();
+	arr[a] = text;
 
-		(<HTMLDivElement>document.getElementById("input")).innerHTML = text;
-	}
+	(<HTMLDivElement>document.getElementById("input")).innerHTML = text;
 }
+
 function calculate(action: string) {
 	if (action === "delete") {
 		window.location.reload();
+	}
+	if (arr[a] == !0) {
+		a++;
 	}
 	if (action === "addition") {
 		a++;
@@ -102,21 +102,21 @@ function calculate(action: string) {
 		}
 		for (let b = 0; b < arr.length; b++) {
 			if (typeof arr[b] === "number") {
-				newNumber = parseInt(arr[b]);
+				newNumber = arr[b];
 			} else if (arr[b] === "+") {
-				newNumber = parseInt(arr[b - 1]) + parseInt(arr[b + 1]);
+				newNumber = arr[b - 1] + arr[b + 1];
 				b++;
 				arr[b] = newNumber;
 			} else if (arr[b] === "*") {
-				newNumber = parseInt(arr[b - 1]) * parseInt(arr[b + 1]);
+				newNumber = arr[b - 1] * arr[b + 1];
 				b++;
 				arr[b] = newNumber;
 			} else if (arr[b] === "-") {
-				newNumber = parseInt(arr[b - 1]) - parseInt(arr[b + 1]);
+				newNumber = arr[b - 1] - arr[b + 1];
 				b++;
 				arr[b] = newNumber;
 			} else if (arr[b] === "/") {
-				newNumber = parseInt(arr[b - 1]) / parseInt(arr[b + 1]);
+				newNumber = arr[b - 1] / arr[b + 1];
 				b++;
 				arr[b] = newNumber;
 			}
