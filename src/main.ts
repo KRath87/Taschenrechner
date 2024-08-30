@@ -5,8 +5,6 @@ let text = "";
 let newNumber = 0;
 let multi = 0;
 let divi = 0;
-let number = 0;
-// let index = 0;
 
 let arrZahlen: number[] = [];
 let arrRechnung: string[] = [];
@@ -14,11 +12,8 @@ let arrRechnung: string[] = [];
 let indexZahlen = 0;
 let indexRechnung = 0;
 
-const inOut = document.querySelectorAll("#inOut div");
 const opperators = document.querySelectorAll("#calculate .operators");
 const values = document.querySelectorAll("#calculate .values");
-
-console.log(inOut);
 
 console.log(opperators);
 
@@ -49,16 +44,11 @@ function write(received: number) {
 }
 
 function calculate(action: string) {
-	(<HTMLDivElement>document.getElementById("input")).innerHTML =
-		arrZahlen.join("") + "=";
 	if (action === "delete") {
 		window.location.reload();
 	}
 
 	if (arrZahlen[0] > 0 || arrZahlen[0] < 0) {
-		(<HTMLDivElement>document.getElementById("input")).innerHTML =
-			newNumber.toString();
-
 		indexZahlen++;
 	}
 	if (action === "addition") {
@@ -94,42 +84,59 @@ function calculate(action: string) {
 	if (action === "result") {
 		indexZahlen++;
 
-		console.log(arrRechnung);
-		console.log(arrZahlen);
+		console.log("arrRechung=" + arrRechnung);
+		console.log("arrZahlen=" + arrZahlen);
 		for (let c = 0; c < arrZahlen.length; c++) {
 			if (arrRechnung.includes("*")) {
 				multi = arrRechnung.indexOf("*");
-				console.log("multi=" + multi);
+				// console.log("multi=" + multi);
 				newNumber = arrZahlen[multi] * arrZahlen[multi + 1];
-				console.log("newNumber=" + newNumber);
+				// console.log("newNumber=" + newNumber);
 				arrZahlen.splice(multi, 2, newNumber);
 				arrRechnung.splice(multi, 1);
-				console.log("arrzahlen=" + arrZahlen);
+				console.log("arrzahlen nach multi=" + arrZahlen);
 			}
 			if (arrRechnung.includes("/")) {
 				divi = arrRechnung.indexOf("/");
 				newNumber = arrZahlen[divi] / arrZahlen[divi + 1];
 				arrZahlen.splice(divi, 2, newNumber);
 				arrRechnung.splice(divi, 1);
+				console.log("arrzahlen nach divi=" + arrZahlen);
 			}
 		}
 		for (let b = 0; b < arrZahlen.length; b++) {
 			if (arrRechnung[b] === "+") {
 				newNumber = arrZahlen[b] + arrZahlen[b + 1];
 				arrZahlen[b + 1] = newNumber;
+				// arrZahlen.shift;
 
-				console.log("newNumber=" + newNumber);
-				console.log("arrZahlen=" + arrZahlen);
+				console.log("arrZahlen nach addition und shift=" + arrZahlen);
 			}
 			if (arrRechnung[b] === "-") {
 				newNumber = arrZahlen[b] - arrZahlen[b + 1];
 				arrZahlen[b + 1] = newNumber;
+				// arrZahlen.shift;
+				console.log("arrZahlen nach substraction und shift=" + arrZahlen);
 			}
 		}
+		(<HTMLDivElement>document.getElementById("output")).innerHTML =
+			newNumber.toString();
 
 		text = "";
-	}
+		console.log("newNumber= " + newNumber);
+		arrRechnung = [];
+		arrZahlen = [];
+		indexZahlen = 0;
+		indexRechnung = 0;
 
-	(<HTMLDivElement>document.getElementById("output")).innerHTML =
-		newNumber.toString();
+		multi = 0;
+		divi = 0;
+
+		console.log("arrZahlen theoretisch leer " + arrZahlen);
+
+		console.log("arrRechnung theoretisch leer" + arrRechnung);
+
+		arrZahlen[0] = newNumber;
+		console.log("arrZahlen mit newNumber an i[0] " + arrZahlen);
+	}
 }
