@@ -31,6 +31,7 @@ for (let i = 0; i < 10; i++) {
 	(<HTMLDivElement>document.getElementById(opperator)).addEventListener(
 		"click",
 		() => calculate(opperator)
+		// { once: true }
 	);
 }
 
@@ -51,6 +52,7 @@ function calculate(action: string) {
 	if (arrZahlen[0] > 0 || arrZahlen[0] < 0) {
 		indexZahlen++;
 	}
+
 	if (action === "addition") {
 		arrRechnung[indexRechnung] = "+";
 		indexRechnung++;
@@ -86,12 +88,13 @@ function calculate(action: string) {
 
 		console.log("arrRechung=" + arrRechnung);
 		console.log("arrZahlen=" + arrZahlen);
+
 		for (let c = 0; c < arrZahlen.length; c++) {
 			if (arrRechnung.includes("*")) {
 				multi = arrRechnung.indexOf("*");
-				// console.log("multi=" + multi);
+
 				newNumber = arrZahlen[multi] * arrZahlen[multi + 1];
-				// console.log("newNumber=" + newNumber);
+
 				arrZahlen.splice(multi, 2, newNumber);
 				arrRechnung.splice(multi, 1);
 				console.log("arrzahlen nach multi=" + arrZahlen);
@@ -108,19 +111,23 @@ function calculate(action: string) {
 			if (arrRechnung[b] === "+") {
 				newNumber = arrZahlen[b] + arrZahlen[b + 1];
 				arrZahlen[b + 1] = newNumber;
-				// arrZahlen.shift;
 
-				console.log("arrZahlen nach addition und shift=" + arrZahlen);
+				console.log("arrZahlen nach addition =" + arrZahlen);
 			}
 			if (arrRechnung[b] === "-") {
 				newNumber = arrZahlen[b] - arrZahlen[b + 1];
 				arrZahlen[b + 1] = newNumber;
-				// arrZahlen.shift;
-				console.log("arrZahlen nach substraction und shift=" + arrZahlen);
+
+				console.log("arrZahlen nach substraction =" + arrZahlen);
 			}
 		}
-		(<HTMLDivElement>document.getElementById("output")).innerHTML =
-			newNumber.toString();
+		if (isNaN(newNumber)) {
+			(<HTMLDivElement>document.getElementById("output")).innerHTML =
+				"Eingabefehler";
+		} else {
+			(<HTMLDivElement>document.getElementById("output")).innerHTML =
+				newNumber.toString();
+		}
 
 		text = "";
 		console.log("newNumber= " + newNumber);
@@ -131,12 +138,6 @@ function calculate(action: string) {
 
 		multi = 0;
 		divi = 0;
-
-		console.log("arrZahlen theoretisch leer " + arrZahlen);
-
-		console.log("arrRechnung theoretisch leer" + arrRechnung);
-
 		arrZahlen[0] = newNumber;
-		console.log("arrZahlen mit newNumber an i[0] " + arrZahlen);
 	}
 }
