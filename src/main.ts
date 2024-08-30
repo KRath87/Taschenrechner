@@ -5,6 +5,7 @@ let text = "";
 let newNumber = 0;
 let multi = 0;
 let divi = 0;
+let root = 0;
 
 let arrZahlen: number[] = [];
 let arrRechnung: string[] = [];
@@ -61,6 +62,19 @@ function calculate(action: string) {
 		indexZahlen++;
 		arrErgebnis[0] = "0";
 		indexErgebnis++;
+	}
+
+	if (action === "point") {
+		//;
+	}
+	if (action === "root") {
+		arrRechnung[indexRechnung] = "&#8730;";
+		indexRechnung++;
+		arrErgebnis[indexErgebnis] = "&#8730;";
+		indexErgebnis++;
+		(<HTMLDivElement>document.getElementById("input")).innerHTML =
+			"&#8730;" + text;
+		text = "";
 	}
 	if (action === "addition") {
 		arrRechnung[indexRechnung] = "+";
@@ -121,6 +135,13 @@ function calculate(action: string) {
 				arrRechnung.splice(divi, 1);
 				console.log("arrzahlen nach divi=" + arrZahlen);
 			}
+			if (arrRechnung.includes("&#8730;")) {
+				root = arrRechnung.indexOf("&#8730;");
+				newNumber = Math.sqrt(arrZahlen[root]);
+				arrZahlen[root] = newNumber;
+				arrRechnung.splice(root, 1);
+				console.log("arrzahlen nach divi=" + arrZahlen);
+			}
 		}
 		for (let b = 0; b < arrZahlen.length; b++) {
 			if (arrRechnung[b] === "+") {
@@ -157,6 +178,7 @@ function calculate(action: string) {
 
 		multi = 0;
 		divi = 0;
+		root = 0;
 
 		arrZahlen[0] = newNumber;
 		// console.log("arrZahlen theoretisch leer " + arrZahlen);
