@@ -8,9 +8,11 @@ let divi = 0;
 
 let arrZahlen: number[] = [];
 let arrRechnung: string[] = [];
+let arrErgebnis: string[] = [];
 
 let indexZahlen = 0;
 let indexRechnung = 0;
+let indexErgebnis = 0;
 
 const opperators = document.querySelectorAll("#calculate .operators");
 const values = document.querySelectorAll("#calculate .values");
@@ -39,6 +41,7 @@ function write(received: number) {
 
 	arrZahlen[indexZahlen] = parseFloat(text);
 	// console.log(arrInput);
+	arrErgebnis[indexErgebnis] = text;
 
 	(<HTMLDivElement>document.getElementById("input")).innerHTML = text;
 }
@@ -50,22 +53,28 @@ function calculate(action: string) {
 
 	if (arrZahlen[0] > 0 || arrZahlen[0] < 0) {
 		indexZahlen++;
+		indexErgebnis++;
 	}
 
 	if (indexZahlen === 0) {
 		arrZahlen[0] = 0;
 		indexZahlen++;
+		arrErgebnis[0] = "0";
+		indexErgebnis++;
 	}
 	if (action === "addition") {
 		arrRechnung[indexRechnung] = "+";
 		indexRechnung++;
-
+		arrErgebnis[indexErgebnis] = "+";
+		indexErgebnis++;
 		text = "";
 		(<HTMLDivElement>document.getElementById("input")).innerHTML = text + "+";
 	}
 	if (action === "subtraction") {
 		arrRechnung[indexRechnung] = "-";
 		indexRechnung++;
+		arrErgebnis[indexErgebnis] = "-";
+		indexErgebnis++;
 
 		text = "";
 		(<HTMLDivElement>document.getElementById("input")).innerHTML = "-";
@@ -73,6 +82,8 @@ function calculate(action: string) {
 	if (action === "division") {
 		arrRechnung[indexRechnung] = "/";
 		indexRechnung++;
+		arrErgebnis[indexErgebnis] = "/";
+		indexErgebnis++;
 
 		text = "";
 		(<HTMLDivElement>document.getElementById("input")).innerHTML = "/";
@@ -80,6 +91,8 @@ function calculate(action: string) {
 	if (action === "multiplication") {
 		arrRechnung[indexRechnung] = "*";
 		indexRechnung++;
+		arrErgebnis[indexErgebnis] = "*";
+		indexErgebnis++;
 
 		text = "";
 
@@ -124,8 +137,16 @@ function calculate(action: string) {
 				console.log("arrZahlen nach substraction und shift=" + arrZahlen);
 			}
 		}
-		(<HTMLDivElement>document.getElementById("output")).innerHTML =
-			newNumber.toString();
+		if (isNaN(newNumber)) {
+			(<HTMLDivElement>document.getElementById("output")).innerHTML = "Error";
+			(<HTMLDivElement>document.getElementById("input")).innerHTML =
+				arrErgebnis.join("") + "=";
+		} else {
+			(<HTMLDivElement>document.getElementById("output")).innerHTML =
+				newNumber.toString();
+			(<HTMLDivElement>document.getElementById("input")).innerHTML =
+				arrErgebnis.join("") + "=";
+		}
 
 		text = "";
 		console.log("newNumber= " + newNumber);
@@ -137,11 +158,11 @@ function calculate(action: string) {
 		multi = 0;
 		divi = 0;
 
-		console.log("arrZahlen theoretisch leer " + arrZahlen);
-
-		console.log("arrRechnung theoretisch leer" + arrRechnung);
-
 		arrZahlen[0] = newNumber;
-		console.log("arrZahlen mit newNumber an i[0] " + arrZahlen);
+		// console.log("arrZahlen theoretisch leer " + arrZahlen);
+
+		// console.log("arrRechnung theoretisch leer" + arrRechnung);
+
+		// console.log("arrZahlen mit newNumber an i[0] " + arrZahlen);
 	}
 }
