@@ -48,6 +48,10 @@ function calculate(action: string) {
 	if (action === "delete") {
 		window.location.reload();
 	}
+	if (indexZahlen === 0) {
+		arrZahlen[0] = 0;
+		indexZahlen++;
+	}
 
 	if (arrZahlen[0] > 0 || arrZahlen[0] < 0) {
 		indexZahlen++;
