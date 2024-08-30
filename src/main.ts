@@ -6,7 +6,7 @@ let newNumber = 0;
 let multi = 0;
 let divi = 0;
 let number = 0;
-let index = 0;
+// let index = 0;
 
 let arrZahlen: number[] = [];
 let arrRechnung: string[] = [];
@@ -100,16 +100,17 @@ function calculate(action: string) {
 			if (arrRechnung.includes("*")) {
 				multi = arrRechnung.indexOf("*");
 				console.log("multi=" + multi);
-				number = arrZahlen[multi] * arrZahlen[multi + 1];
-				console.log("number=" + number);
-				arrZahlen.splice(multi, 2, number);
+				newNumber = arrZahlen[multi] * arrZahlen[multi + 1];
+				console.log("newNumber=" + newNumber);
+				arrZahlen.splice(multi, 2, newNumber);
+				arrRechnung.splice(multi, 1);
 				console.log("arrzahlen=" + arrZahlen);
 			}
 			if (arrRechnung.includes("/")) {
 				divi = arrRechnung.indexOf("/");
-				number = arrZahlen[divi - 1] / arrZahlen[divi + 1];
-				index = divi - 1;
-				arrZahlen.splice(index, 2, number);
+				newNumber = arrZahlen[divi] / arrZahlen[divi + 1];
+				arrZahlen.splice(divi, 2, newNumber);
+				arrRechnung.splice(divi, 1);
 			}
 		}
 		for (let b = 0; b < arrZahlen.length; b++) {
@@ -122,14 +123,6 @@ function calculate(action: string) {
 			}
 			if (arrRechnung[b] === "-") {
 				newNumber = arrZahlen[b] - arrZahlen[b + 1];
-				arrZahlen[b + 1] = newNumber;
-			}
-			// if (arrRechnung[b] === "*") {
-			// 	newNumber = arrZahlen[b] * arrZahlen[b + 1];
-			// 	arrZahlen[b + 1] = newNumber;
-			// }
-			if (arrRechnung[b] === "/") {
-				newNumber = arrZahlen[b] / arrZahlen[b + 1];
 				arrZahlen[b + 1] = newNumber;
 			}
 		}
