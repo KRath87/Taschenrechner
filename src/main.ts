@@ -60,19 +60,7 @@ function calculate(action: string) {
 		newNumber = 0;
 
 		(<HTMLDivElement>document.getElementById("output")).innerHTML = "";
-		(<HTMLDivElement>document.getElementById("input")).innerHTML = "Eingabe";
-		console.log("delete");
-		console.log("arrRechnung= " + arrRechnung);
-		console.log("arrZahlen= " + arrZahlen);
-		console.log("arrErgebnis= " + arrErgebnis);
-		console.log("indexRechnung= " + indexRechnung);
-		console.log("indexZahlen= " + indexZahlen);
-		console.log("indexErgebnis= " + indexErgebnis);
-		console.log("text= " + text);
-		console.log("multi= " + multi);
-		console.log("divi= " + divi);
-		console.log("root= " + root);
-		console.log("newNumber= " + newNumber);
+		(<HTMLDivElement>document.getElementById("input")).innerHTML = "0";
 	} else if (arrZahlen[0] > 0 || arrZahlen[0] < 0) {
 		indexZahlen++;
 		indexErgebnis++;
