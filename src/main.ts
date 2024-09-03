@@ -34,6 +34,7 @@ for (let i = 0; i < 10; i++) {
 }
 
 function write(received: number) {
+	console.log("arrZahlen vor Texteingabe= " + arrZahlen);
 	text = text + received.toString();
 
 	arrZahlen[indexZahlen] = parseFloat(text);
@@ -61,14 +62,21 @@ function calculate(action: string) {
 		(<HTMLDivElement>document.getElementById("output")).innerHTML = "";
 		(<HTMLDivElement>document.getElementById("input")).innerHTML = "Eingabe";
 		console.log("delete");
-	}
-
-	if (arrZahlen[0] > 0 || arrZahlen[0] < 0) {
+		console.log("arrRechnung= " + arrRechnung);
+		console.log("arrZahlen= " + arrZahlen);
+		console.log("arrErgebnis= " + arrErgebnis);
+		console.log("indexRechnung= " + indexRechnung);
+		console.log("indexZahlen= " + indexZahlen);
+		console.log("indexErgebnis= " + indexErgebnis);
+		console.log("text= " + text);
+		console.log("multi= " + multi);
+		console.log("divi= " + divi);
+		console.log("root= " + root);
+		console.log("newNumber= " + newNumber);
+	} else if (arrZahlen[0] > 0 || arrZahlen[0] < 0) {
 		indexZahlen++;
 		indexErgebnis++;
-	}
-
-	if (indexZahlen === 0) {
+	} else if (indexZahlen === 0) {
 		arrZahlen[0] = 0;
 		indexZahlen++;
 		arrErgebnis[0] = "0";
@@ -129,9 +137,9 @@ function calculate(action: string) {
 		for (let c = 0; c < arrZahlen.length; c++) {
 			if (arrRechnung.includes("*")) {
 				multi = arrRechnung.indexOf("*");
-				// console.log("multi=" + multi);
+
 				newNumber = arrZahlen[multi] * arrZahlen[multi + 1];
-				// console.log("newNumber=" + newNumber);
+
 				arrZahlen.splice(multi, 2, newNumber);
 				arrRechnung.splice(multi, 1);
 				console.log("arrzahlen nach multi=" + arrZahlen);
