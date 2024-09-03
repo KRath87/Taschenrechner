@@ -1,5 +1,4 @@
 import "./style.css";
-//Taschenrechner mit + - * /
 
 let text = "";
 let newNumber = 0;

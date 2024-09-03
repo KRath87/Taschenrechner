@@ -3,11 +3,16 @@
 }
 
 body {
-	background-image: url(https://plus.unsplash.com/premium_vector-1722586230893-d91fe14b5ae9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxpbGx1c3RyYXRpb25zLWZlZWR8Njl8fHxlbnwwfHx8fHw%3D);
+	/* /* background-image: url(https://plus.unsplash.com/premium_vector-1722586230893-d91fe14b5ae9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxpbGx1c3RyYXRpb25zLWZlZWR8Njl8fHxlbnwwfHx8fHw%3D);
+		/* background-image: url(https://plus.unsplash.com/premium_vector-1722586231105-a190495ce48a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxpbGx1c3RyYXRpb25zLWZlZWR8ODF8fHxlbnwwfHx8fHw%3D); */
+
+	background-image: url(https://plus.unsplash.com/premium_vector-1707445731720-2c46d37f0179?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxpbGx1c3RyYXRpb25zLWZlZWR8MjYzfHx8ZW58MHx8fHx8);
+	background-size: auto;
 }
 
 h1 {
 	text-align: center;
+	color: #1a759f;
 }
 
 #calculator:hover {
