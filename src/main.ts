@@ -18,10 +18,6 @@ let indexErgebnis = 0;
 const opperators = document.querySelectorAll("#calculate .operators");
 const values = document.querySelectorAll("#calculate .values");
 
-console.log(opperators);
-
-console.log(values);
-
 for (let i = 0; i < 10; i++) {
 	const numValue = values[i].id;
 	const value = parseInt(numValue);
@@ -41,7 +37,7 @@ function write(received: number) {
 	text = text + received.toString();
 
 	arrZahlen[indexZahlen] = parseFloat(text);
-	// console.log(arrInput);
+
 	arrErgebnis[indexErgebnis] = text;
 
 	(<HTMLDivElement>document.getElementById("input")).innerHTML = text;
@@ -49,7 +45,22 @@ function write(received: number) {
 
 function calculate(action: string) {
 	if (action === "delete") {
-		window.location.reload();
+		text = "";
+		arrRechnung = [];
+		arrZahlen = [];
+		arrErgebnis = [];
+		indexZahlen = 0;
+		indexRechnung = 0;
+		indexErgebnis = 0;
+
+		multi = 0;
+		divi = 0;
+		root = 0;
+		newNumber = 0;
+
+		(<HTMLDivElement>document.getElementById("output")).innerHTML = "";
+		(<HTMLDivElement>document.getElementById("input")).innerHTML = "Eingabe";
+		console.log("delete");
 	}
 
 	if (arrZahlen[0] > 0 || arrZahlen[0] < 0) {
@@ -64,9 +75,6 @@ function calculate(action: string) {
 		indexErgebnis++;
 	}
 
-	if (action === "point") {
-		//;
-	}
 	if (action === "root") {
 		arrRechnung[indexRechnung] = "&#8730;";
 		indexRechnung++;
@@ -147,19 +155,17 @@ function calculate(action: string) {
 			if (arrRechnung[b] === "+") {
 				newNumber = arrZahlen[b] + arrZahlen[b + 1];
 				arrZahlen[b + 1] = newNumber;
-				// arrZahlen.shift;
-
-				console.log("arrZahlen nach addition und shift=" + arrZahlen);
+				console.log("arrZahlen nach addition= " + arrZahlen);
 			}
 			if (arrRechnung[b] === "-") {
 				newNumber = arrZahlen[b] - arrZahlen[b + 1];
 				arrZahlen[b + 1] = newNumber;
-				// arrZahlen.shift;
-				console.log("arrZahlen nach substraction und shift=" + arrZahlen);
+				console.log("arrZahlen nach substraction= " + arrZahlen);
 			}
 		}
 		if (isNaN(newNumber)) {
-			(<HTMLDivElement>document.getElementById("output")).innerHTML = "Error";
+			(<HTMLDivElement>document.getElementById("output")).innerHTML =
+				"Bitte Eingabe überprüfen";
 			(<HTMLDivElement>document.getElementById("input")).innerHTML =
 				arrErgebnis.join("") + "=";
 		} else {
@@ -181,10 +187,5 @@ function calculate(action: string) {
 		root = 0;
 
 		arrZahlen[0] = newNumber;
-		// console.log("arrZahlen theoretisch leer " + arrZahlen);
-
-		// console.log("arrRechnung theoretisch leer" + arrRechnung);
-
-		// console.log("arrZahlen mit newNumber an i[0] " + arrZahlen);
 	}
 }
